@@ -22,7 +22,7 @@
 
 - name: Copy app jar
   copy:
-    src: ../../../helloworld-java-app/target/helloworld-java-app-1.0-SNAPSHOT-jar-with-dependencies.jar
+    src: ../../../devops.jar
     dest: "/home/{{ user }}/devops_{{ deploy_stamp }}.jar"
     owner: "{{ user }}"
     group: "{{ group }}"
