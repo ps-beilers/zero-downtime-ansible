@@ -1,1 +1,3 @@
 ---
+devops_user: devops
+devops_group: devops

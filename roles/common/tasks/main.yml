@@ -1,1 +1,18 @@
-# Task 1
+---
+
+- name: Install vim
+  apt:
+    pkg: vim
+    state: present
+    update_cache: no
+  tags:
+   - vim
+
+- name: vim filetype indent off
+  lineinfile:
+    dest: /etc/vim/vimrc
+    state: present
+    line: 'filetype indent off'
+    regexp: '^filetype indent'
+  tags:
+   - vim

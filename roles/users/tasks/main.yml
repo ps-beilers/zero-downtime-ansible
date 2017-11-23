@@ -1,0 +1,38 @@
+---
+- name: Create group
+  group:
+    name: "{{ devops_group }}"
+    state: present
+  tags:
+    - users
+
+- name: "User {{ devops_user }}"
+  user:
+   name: "{{ devops_user }}"
+   shell: /bin/bash
+   group: "{{ devops_group }}"
+  tags: ['users']
+
+- name: "{{ devops_user }} .ssh directory"
+  file:
+    dest: "/home/{{ devops_user }}/.ssh"
+    state: directory
+    owner: "{{ devops_user }}"
+    group: "{{ devops_group }}"
+    mode: 0700
+  tags:
+    - users
+
+- name: "{{ devops_user }} authorized keys"
+  lineinfile:
+    dest: "/home/{{ devops_user }}/.ssh/authorized_keys"
+    state: present
+    line: "{{ lookup('file','~/.ssh/id_rsa.pub') }}"
+    insertafter: EOF
+    create: yes
+    owner: "{{ devops_user }}"
+    group: "{{ devops_group }}"
+    mode: 0600
+    regexp: ^ssh-rsa
+  tags:
+    - users

@@ -1,5 +1,14 @@
 ---
+- hosts: dbservers
+  roles:
+    - common
+
 - hosts: appservers
   roles:
     - java
+    - common
+    - users
 
+- hosts: proxies
+  roles:
+    - common
