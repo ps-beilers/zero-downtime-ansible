@@ -24,3 +24,7 @@
     - common
     - nginx
 
+#- hosts: dbservers
+#  gather_facts: False
+#  roles:
+#    - db_post

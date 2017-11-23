@@ -4,4 +4,4 @@ db:
   user: devops
   schema: devops
   password: devops123
-  table_name: HELLO
+  table_name: MESSAGES
